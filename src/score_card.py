@@ -11,3 +11,6 @@ class ScoreCard(object):
 
     def __hash__(self):
         return hash(self.index) + 1303 * hash(self.score)
+
+    def __str__(self):
+        return '{index : %s, score: %s}' %(self.index, self.score)

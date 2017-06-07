@@ -15,3 +15,8 @@ class ScoreCardTest(unittest.TestCase):
         score_card2 = ScoreCard(index=2, score=20)
         self.assertFalse(score_card1.__eq__(score_card2))
         self.assertNotEqual(score_card1.__hash__(), score_card2.__hash__())
+
+    def test_toString_method_to_get_json_response(self):
+        score_card1 = ScoreCard(index=1, score=10)
+        score_card2 = ScoreCard(index=1, score=10)
+        self.assertEquals(score_card1.__str__(), score_card2.__str__())
