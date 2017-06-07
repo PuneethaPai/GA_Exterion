@@ -10,7 +10,7 @@ class ScoreCard(object):
         return self.index == other.index and self.score == other.score
 
     def __hash__(self):
-        return hash(self.index) + 1303 * hash(self.score)
+        return hash(str(self))
 
     def __str__(self):
         return '{index : %s, score: %s}' %(self.index, self.score)
