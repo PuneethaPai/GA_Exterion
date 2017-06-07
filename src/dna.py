@@ -9,4 +9,7 @@ class DNA(object):
         return self.structure == other.structure
 
     def __hash__(self):
-        return hash(frozenset(self.structure))
+        return hash(str(self))
+
+    def __str__(self):
+        return reduce(lambda x, y: str(x) + str(y), self.structure)
