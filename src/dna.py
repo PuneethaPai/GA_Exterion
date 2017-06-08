@@ -5,7 +5,7 @@ class DNA(object):
     def __init__(self, structure):
         self.structure = structure
 
-    def __equal__(self, other):
+    def __eq__(self, other):
         return self.structure == other.structure
 
     def __hash__(self):
