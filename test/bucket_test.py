@@ -8,11 +8,10 @@ class BucketTest(unittest.TestCase):
     def test_bucket_equality_for_change_in_order(self):
         bucket1 = Bucket([ScoreCard(index=1, score=10), ScoreCard(index=2, score=20)])
         bucket2 = Bucket([ScoreCard(index=2, score=20), ScoreCard(index=1, score=10)])
-        self.assertTrue(bucket1.__equal__(bucket2))
-        self.assertEquals(bucket1.__hash__(), bucket2.__hash__())
+        self.assertEquals(bucket1, bucket2)
 
     def test_bucket_inequality(self):
         bucket1 = Bucket([ScoreCard(index=1, score=10), ScoreCard(index=2, score=20)])
         bucket2 = Bucket([ScoreCard(index=3, score=30), ScoreCard(index=4, score=40)])
-        self.assertFalse(bucket1.__equal__(bucket2))
+        self.assertNotEqual(bucket1, bucket2)
         self.assertNotEqual(bucket1.__hash__(), bucket2.__hash__())

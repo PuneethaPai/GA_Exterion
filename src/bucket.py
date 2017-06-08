@@ -2,7 +2,7 @@ class Bucket(object):
     def __init__(self, score_cards):
         self.score_cards = set(score_cards)
 
-    def __equal__(self, other):
+    def __eq__(self, other):
         return self.score_cards == other.score_cards
 
     def __hash__(self):
