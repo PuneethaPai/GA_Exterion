@@ -1,6 +1,6 @@
 # Understands the solution module ie to create buckets of equal size as to holds score card in them
+import numpy as np
 from itertools import islice
-
 from bucket import Bucket
 
 
@@ -22,3 +22,9 @@ class Container(object):
         buckets = list(iter(lambda: tuple(islice(iterable, bucket_size)), ()))
         buckets = map(lambda x: Bucket(x), buckets)
         return buckets
+
+    def fitness(self):
+        bucket_sums = map(lambda bucket: bucket.sum(), self.buckets)
+        variance = np.var(bucket_sums)
+        fitness = - variance
+        return fitness

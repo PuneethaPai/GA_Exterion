@@ -29,6 +29,15 @@ class ContainerTest(unittest.TestCase):
         self.assertNotEqual(container1, container2)
         self.assertNotEqual(container1.__hash__(), container2.__hash__())
 
+    def test_container_to_calculate_fitness(self):
+        dna = self.get_a_dna_with_some_structure()
+        container = Container(dna, 5)
+        self.assertEquals(container.fitness(), -3200)
+
     def get_a_dna_with_some_structure(self):
-        cards = [ScoreCard(1, 10), ScoreCard(2, 20)] * 5
+        cards = [ScoreCard(1, 10), ScoreCard(2, 20),
+                 ScoreCard(3, 30), ScoreCard(4, 40),
+                 ScoreCard(5, 50), ScoreCard(6, 60),
+                 ScoreCard(7, 70), ScoreCard(8, 80),
+                 ScoreCard(9, 90), ScoreCard(10, 100)]
         return DNA(structure=cards)
