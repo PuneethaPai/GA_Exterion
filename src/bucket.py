@@ -12,4 +12,4 @@ class Bucket(object):
         return reduce(lambda x, y: str(x) + str(y), self.score_cards)
 
     def sum(self):
-        return reduce(lambda x, y: x.score + y.score, self.score_cards)
+        return sum(map(lambda x: x.score, self.score_cards))

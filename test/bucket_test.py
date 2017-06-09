@@ -17,6 +17,6 @@ class BucketTest(unittest.TestCase):
         self.assertNotEqual(bucket1.__hash__(), bucket2.__hash__())
 
     def test_bucket_to_be_able_to_find_the_some_of_score_cards(self):
-        bucket = Bucket([ScoreCard(index=1, score=10), ScoreCard(index=2, score=20)])
-        self.assertEquals(bucket.sum(), 30)
+        bucket = Bucket([ScoreCard(index=1, score=10), ScoreCard(index=2, score=20), ScoreCard(index=3, score=30)])
+        self.assertEquals(bucket.sum(), 60)
 
