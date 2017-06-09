@@ -10,3 +10,6 @@ class Bucket(object):
 
     def __str__(self):
         return reduce(lambda x, y: str(x) + str(y), self.score_cards)
+
+    def sum(self):
+        return reduce(lambda x, y: x.score + y.score, self.score_cards)
