@@ -1,3 +1,4 @@
+import random
 import unittest
 
 from container import Container
@@ -33,6 +34,19 @@ class ContainerTest(unittest.TestCase):
         dna = self.get_a_dna_with_some_structure()
         container = Container(dna, 5)
         self.assertEquals(container.fitness(), -3200)
+
+    def test_container_for_crossover(self):
+        DNA.mutate_percentage = 50
+        dna_1 = self.get_a_dna_with_some_structure()
+        dna_2 = self.get_a_dna_with_some_structure()
+        random.shuffle(dna_2.structure)
+        self.assertNotEqual(dna_1, dna_2)
+        container_1 = Container(dna=dna_1, number_of_buckets=5)
+        container_2 = Container(dna=dna_2, number_of_buckets=5)
+        child_container_1, child_container_2 = container_1.crossover(container_2)
+        self.assertFalse(container_1.__eq__(child_container_1))
+        self.assertFalse(container_2.__eq__(child_container_2))
+        self.assertFalse(child_container_1.__eq__(child_container_2))
 
     def get_a_dna_with_some_structure(self):
         cards = [ScoreCard(1, 10), ScoreCard(2, 20),

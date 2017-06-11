@@ -1,6 +1,9 @@
 # Understands the solution module ie to create buckets of equal size as to holds score card in them
-import numpy as np
+
 from itertools import islice
+
+import numpy as np
+
 from bucket import Bucket
 
 
@@ -28,3 +31,10 @@ class Container(object):
         variance = np.var(bucket_sums)
         fitness = - variance
         return fitness
+
+    def crossover(self, other):
+        child_1, child_2 = self.dna.crossover(other.dna)
+        child_1.mutate()
+        child_2.mutate()
+        number_of_buckets = len(self.buckets)
+        return Container(child_1, number_of_buckets), Container(child_2, number_of_buckets)
