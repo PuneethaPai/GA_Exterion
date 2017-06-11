@@ -18,7 +18,7 @@ class DNA(object):
         return reduce(lambda x, y: str(x) + str(y), self.structure)
 
     def crossover(self, other):
-        crossover_point = random.randint(0, len(self.structure))
+        crossover_point = random.randint(0, len(self.structure) - 2)
         child_1 = DNA(structure=self.structure[:crossover_point])
         child_2 = DNA(structure=other.structure[:crossover_point])
         child_1.__regenerate(other)
