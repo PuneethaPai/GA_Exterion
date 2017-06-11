@@ -35,6 +35,18 @@ class DNA_Test(unittest.TestCase):
         child_1, child_2 = dna1.crossover(dna2)
         self.assertNotEqual(child_1, child_2)
 
+    def test_dna_mutation_with_zero_percent_gives_same_dna(self):
+        DNA.mutate_percentage = 0
+        original = self.get_a_dna_with_some_structure()
+        mutated = original.mutate()
+        self.assertEqual(original, mutated)
+
+    def test_dna_mutation_with_hundred_percent_gives_mutated_dna(self):
+        DNA.mutate_percentage = 100
+        original = self.get_a_dna_with_some_structure()
+        mutated = original.mutate()
+        self.assertNotEqual(original, mutated)
+
     def get_a_dna_with_some_structure(self):
         cards = [ScoreCard(1, 10), ScoreCard(2, 20),
                  ScoreCard(3, 30), ScoreCard(4, 40),

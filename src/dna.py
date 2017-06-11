@@ -3,6 +3,8 @@ import random
 
 
 class DNA(object):
+    mutate_percentage = 0
+
     def __init__(self, structure):
         self.structure = structure
 
@@ -27,3 +29,19 @@ class DNA(object):
         for score_card in other.structure:
             if score_card not in self.structure:
                 self.structure.append(score_card)
+
+    def mutate(self):
+        mutated_structure = self.structure[:]
+        if self.__should_mutate():
+            mutated_structure = self.get_a_mutated_structure()
+        return DNA(structure=mutated_structure)
+
+    def get_a_mutated_structure(self):
+        mutated_structure = self.structure[:]
+        index_1, index_2 = random.sample(xrange(len(self.structure)), 2)
+        mutated_structure[index_1], mutated_structure[index_2] = mutated_structure[index_2], mutated_structure[index_1]
+        return mutated_structure
+
+    def __should_mutate(self):
+        probability_value = random.randint(0, 100)
+        return probability_value <= self.mutate_percentage
