@@ -3,18 +3,19 @@ import unittest
 
 from container import Container
 from dna import DNA
+from helper import get_a_dna_with_some_structure
 from score_card import ScoreCard
 
 
 class ContainerTest(unittest.TestCase):
     def test_container_to_create_buckets(self):
-        dna = self.get_a_dna_with_some_structure()
+        dna = get_a_dna_with_some_structure()
         container = Container(dna=dna, number_of_buckets=5)
         self.assertEquals(5, len(container.buckets))
 
     def test_container_equality(self):
-        dna1 = self.get_a_dna_with_some_structure()
-        dna2 = self.get_a_dna_with_some_structure()
+        dna1 = get_a_dna_with_some_structure()
+        dna2 = get_a_dna_with_some_structure()
         self.assertNotEqual(dna1, dna2)
         container1 = Container(dna1, 5)
         container2 = Container(dna2, 5)
@@ -31,14 +32,14 @@ class ContainerTest(unittest.TestCase):
         self.assertNotEqual(container1.__hash__(), container2.__hash__())
 
     def test_container_to_calculate_fitness(self):
-        dna = self.get_a_dna_with_some_structure()
+        dna = get_a_dna_with_some_structure()
         container = Container(dna, 5)
         self.assertEquals(container.fitness(), -3200)
 
     def test_container_for_crossover(self):
         DNA.mutate_percentage = 50
-        dna_1 = self.get_a_dna_with_some_structure()
-        dna_2 = self.get_a_dna_with_some_structure()
+        dna_1 = get_a_dna_with_some_structure()
+        dna_2 = get_a_dna_with_some_structure()
         random.shuffle(dna_2.structure)
         self.assertNotEqual(dna_1, dna_2)
         container_1 = Container(dna=dna_1, number_of_buckets=5)
@@ -47,11 +48,3 @@ class ContainerTest(unittest.TestCase):
         self.assertFalse(container_1.__eq__(child_container_1))
         self.assertFalse(container_2.__eq__(child_container_2))
         self.assertFalse(child_container_1.__eq__(child_container_2))
-
-    def get_a_dna_with_some_structure(self):
-        cards = [ScoreCard(1, 10), ScoreCard(2, 20),
-                 ScoreCard(3, 30), ScoreCard(4, 40),
-                 ScoreCard(5, 50), ScoreCard(6, 60),
-                 ScoreCard(7, 70), ScoreCard(8, 80),
-                 ScoreCard(9, 90), ScoreCard(10, 100)]
-        return DNA(structure=cards)
