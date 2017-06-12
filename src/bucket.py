@@ -6,7 +6,7 @@ class Bucket(object):
         return self.score_cards == other.score_cards
 
     def __hash__(self):
-        return hash(str(self))
+        return hash(frozenset(self.score_cards))
 
     def __str__(self):
         return reduce(lambda x, y: str(x) + str(y), self.score_cards)

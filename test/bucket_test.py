@@ -9,6 +9,7 @@ class BucketTest(unittest.TestCase):
         bucket1 = Bucket([ScoreCard(index=1, score=10), ScoreCard(index=2, score=20)])
         bucket2 = Bucket([ScoreCard(index=2, score=20), ScoreCard(index=1, score=10)])
         self.assertEquals(bucket1, bucket2)
+        self.assertEquals(bucket1.__hash__(), bucket2.__hash__())
 
     def test_bucket_inequality(self):
         bucket1 = Bucket([ScoreCard(index=1, score=10), ScoreCard(index=2, score=20)])
