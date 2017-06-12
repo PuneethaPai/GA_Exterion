@@ -31,10 +31,10 @@ class DNA(object):
                 self.structure.append(score_card)
 
     def mutate(self):
-        mutated_structure = self.structure[:]
         if self.__should_mutate():
             mutated_structure = self.get_a_mutated_structure()
-        return DNA(structure=mutated_structure)
+            return DNA(structure=mutated_structure)
+        return DNA(structure=self.structure[:])
 
     def get_a_mutated_structure(self):
         mutated_structure = self.structure[:]
